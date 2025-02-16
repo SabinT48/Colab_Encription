@@ -31,22 +31,19 @@ export default function Converter() {
   const encryptedText = caesarCipher(inputText);
 
   return (
-    <div className="w-full h-full py-20 flex flex-col">
+    <div className="flex flex-col h-full">
       <textarea
         value={inputText}
         onChange={handleInputChange}
         placeholder="Start typing here or paste any text you want to encrypt..."
-        className="w-full p-2 mb-4 focus:outline-none h-1/2"
+        className="w-full h-[42vh] p-2 mb-4 focus:outline-none"
       />
-      <hr className=""/>
-      <div className="flex flex-col flex-1 pt-5">
-        {/* <h3 className="text-lg mb-2">Encrypted Text:</h3> */}
-        <textarea
-          value={encryptedText}
-          readOnly
-          className="w-full p-2 focus:outline-none h-1/2"
-        />
-      </div>
+      <hr />
+      <textarea
+        value={encryptedText}
+        readOnly
+        className="w-full h-[42vh] p-2 focus:outline-none"
+      />
     </div>
   );
 }

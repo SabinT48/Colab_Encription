@@ -1,14 +1,13 @@
 import Converter from "./_components/Converter";
+import History from "./_components/History";
 
 export default function Home() {
   return (
-    <div className="flex items-stretch w-full">
-      <div className="w-3/4">
+    <>
+      <div className="p-10 md:mr-[300px]">
         <Converter />
       </div>
-      <div className="w-1/4 border-l py-2 px-4 h-[95vh]">
-        History
-      </div>
-    </div>
+      <History />
+    </>
   );
 }

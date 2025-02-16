@@ -1,4 +1,4 @@
-import logo from '../icons/lock.png'
+import logo from '../_icons/lock.png'
 import Image from 'next/image'
 
 export default function Logo() {

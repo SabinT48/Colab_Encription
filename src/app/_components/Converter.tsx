@@ -7,43 +7,87 @@ function caesarCipher(text: string, shift: number = 3): string {
     .map((char) => {
       const code = char.charCodeAt(0);
       if (code >= 65 && code <= 90) {
-        // Uppercase letters
         return String.fromCharCode(((code - 65 + shift) % 26) + 65);
       }
       if (code >= 97 && code <= 122) {
-        // Lowercase letters
         return String.fromCharCode(((code - 97 + shift) % 26) + 97);
       }
-      // Non alphabetical characters remain unchanged
       return char;
     })
     .join("");
 }
 
+function reverseText(text: string): string {
+  return text.split("").reverse().join("");
+}
+
+// Imitated SHA-like hash function (for demonstration only)
+function fakeSHA(text: string): string {
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = (hash << 5) - hash + text.charCodeAt(i);
+    hash |= 0; // Convert to 32-bit integer
+  }
+  // Convert to hex string
+  return hash.toString(16);
+}
+
 export default function Converter() {
   const [inputText, setInputText] = useState("");
+  const [encryptionType, setEncryptionType] = useState("caesar");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
 
-  // Compute encrypted text live based on the inputText
-  const encryptedText = caesarCipher(inputText);
+  const handleEncryptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setEncryptionType(e.target.value);
+  };
+
+  function getEncryptedText(text: string): string {
+    switch (encryptionType) {
+      case "caesar":
+        return caesarCipher(text);
+      case "reverse":
+        return reverseText(text);
+      case "sha":
+        return fakeSHA(text);
+      case "none":
+      default:
+        return text;
+    }
+  }
+
+  const encryptedText = getEncryptedText(inputText);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col relative z-20">
       <textarea
         value={inputText}
         onChange={handleInputChange}
         placeholder="Start typing here or paste any text you want to encrypt..."
         className="w-full h-[42vh] p-2 mb-4 focus:outline-none"
       />
-      <hr />
-      <textarea
-        value={encryptedText}
-        readOnly
-        className="w-full h-[42vh] p-2 focus:outline-none"
-      />
+      <hr className="mb-4" />
+      <div className="w-full">
+        <div className="flex justify-end mb-2">
+          <select
+            value={encryptionType}
+            onChange={handleEncryptionChange}
+            className="z-10 bg-white border w-fit rounded px-2 py-1 text-sm"
+          >
+            <option value="none">None</option>
+            <option value="caesar">Caesar Cipher</option>
+            <option value="reverse">Reverse</option>
+            <option value="sha">SHA-256</option>
+          </select>
+        </div>
+        <textarea
+          value={encryptedText}
+          readOnly
+          className="w-full h-[42vh] p-2 focus:outline-none"
+        />
+      </div>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function History() {
   ];
 
   return (
-    <div className="fixed top-10 right-0 h-full w-[400px] border-l bg-white p-4 overflow-y-auto">
+    <div className="w-full md:w-[400px] border-l bg-white p-4 overflow-y-auto min-h-screen">
       <h2 className="text-lg font-semibold mb-2">History</h2>
       <HistorySearch />
       <div className="mt-3">

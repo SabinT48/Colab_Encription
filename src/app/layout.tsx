@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${gabarito.className} max-h-screen antialiased flex flex-col h-screen`}>
+      <body className={`${gabarito.className} max-h-screen overflow-hidden antialiased flex flex-col h-screen`}>
         <Header />
         <main className="flex-1 min-h-0 space-y-5">
           {children}

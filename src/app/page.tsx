@@ -3,11 +3,13 @@ import History from "./_components/History";
 
 export default function Home() {
   return (
-    <>
-      <div className="p-10 md:mr-[300px]">
+    <div className="flex flex-col md:flex-row">
+      <div className="flex-1 p-10">
         <Converter />
       </div>
-      <History />
-    </>
+      <div className="w-full md:w-[400px]">
+        <History />
+      </div>
+    </div>
   );
 }

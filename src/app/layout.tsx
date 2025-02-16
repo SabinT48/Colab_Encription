@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Gabarito } from "next/font/google";
 import "./globals.css";
+import Header from "./_components/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const gabarito = Gabarito({
+  variable: "--font-gabarito",
   subsets: ["latin"],
 });
 
@@ -25,9 +21,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${gabarito.className} min-h-screen antialiased mx-auto`}
       >
-        {children}
+        <div className="flex flex-col min-h-screen">
+          <Header />
+
+          <main className="flex-1">{children}</main>
+          <footer className="mb-0">
+            <small>&copy; {new Date().getFullYear()} LockByte</small>
+          </footer>
+        </div>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Gabarito } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 
 const gabarito = Gabarito({
   variable: "--font-gabarito",
@@ -21,16 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gabarito.className} min-h-screen antialiased mx-auto`}
+        className={`${gabarito.className} max-h-screen antialiased flex flex-col h-screen mx-auto`}
       >
-        <div className="flex flex-col min-h-screen">
-          <Header />
+        <Header />
 
-          <main className="flex-1">{children}</main>
-          <footer className="mb-0">
-            <small>&copy; {new Date().getFullYear()} LockByte</small>
-          </footer>
-        </div>
+        <main className="flex-1 min-h-0 container mx-auto space-y-5">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );

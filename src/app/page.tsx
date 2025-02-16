@@ -1,8 +1,14 @@
+import Converter from "./_components/Converter";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the main content area.</p>
-    </main>
+    <div className="flex items-stretch w-full">
+      <div className="w-3/4">
+        <Converter />
+      </div>
+      <div className="w-1/4 border-l py-2 px-4 h-[95vh]">
+        History
+      </div>
+    </div>
   );
 }

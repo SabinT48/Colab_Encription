@@ -3,11 +3,11 @@ import History from "./_components/History";
 
 export default function Home() {
   return (
-    <div className="flex flex-col md:flex-row gap-0 min-h-screen">
-      <div className="flex-1">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr,minmax(350px,30%)] min-h-screen">
+      <div className="relative">
         <Converter />
       </div>
-      <div className="w-full md:max-w-96 md:mr-4">
+      <div>
         <History />
       </div>
     </div>

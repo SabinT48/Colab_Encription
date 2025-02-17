@@ -10,10 +10,10 @@ export default function History() {
   ];
 
   return (
-    <div className="w-full md:w-[400px] border-l bg-white p-4 overflow-y-auto min-h-screen">
+    <div className="w-full h-full border-l bg-white p-4 overflow-y-auto">
       <h2 className="text-lg font-semibold mb-2">History</h2>
       <HistorySearch />
-      <div className="mt-3">
+      <div className="mt-2">
         <DateIndicator />
         {historyItems.map((item, index) => (
           <HystoryItem key={index} item={item} />

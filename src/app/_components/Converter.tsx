@@ -66,7 +66,7 @@ export default function Converter() {
         value={inputText}
         onChange={handleInputChange}
         placeholder="Start typing here or paste any text you want to encrypt..."
-        className="w-full h-[42vh] p-2 mb-4 focus:outline-none"
+        className="w-full h-[42vh] p-2 mb-4 px-9 focus:outline-none"
       />
       <hr className="mb-4" />
       <div className="w-full">
@@ -85,7 +85,7 @@ export default function Converter() {
         <textarea
           value={encryptedText}
           readOnly
-          className="w-full h-[42vh] p-2 focus:outline-none"
+          className="w-full h-[42vh] py-2 px-9 focus:outline-none"
         />
       </div>
     </div>

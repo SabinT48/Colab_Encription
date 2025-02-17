@@ -2,9 +2,8 @@ import DateIndicator from "./DateIndicator";
 import HistorySearch from "./HistorySearch";
 import HistoryItem from './HystoryItem';  // Fixed typo in import
 
-interface HistoryProps {}
 
-const History: React.FC<HistoryProps> = () => {
+const History: React.FC = () => {
   const historyItems: string[] = [
     "What is Next js? Next js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.",
     "Under the hood, Next js also abstracts and automatically configures tooling needed for React, like bundling, compiling, and more.",

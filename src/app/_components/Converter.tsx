@@ -1,41 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEncryption } from "../_hooks/useEncryption";
 import ReverseButton from "./ReverseButton";
 
-function caesarCipher(text: string, shift: number = 3): string {
-  return text
-    .split("")
-    .map((char) => {
-      const code = char.charCodeAt(0);
-      if (code >= 65 && code <= 90) {
-        return String.fromCharCode(((code - 65 + shift) % 26) + 65);
-      }
-      if (code >= 97 && code <= 122) {
-        return String.fromCharCode(((code - 97 + shift) % 26) + 97);
-      }
-      return char;
-    })
-    .join("");
-}
-
-function reverseText(text: string): string {
-  return text.split("").reverse().join("");
-}
-
-// Imitated SHA-like hash function (for demonstration only)
-function fakeSHA(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    hash = (hash << 5) - hash + text.charCodeAt(i);
-    hash |= 0; // Convert to 32-bit integer
-  }
-  // Convert to hex string
-  return hash.toString(16);
-}
-
 export default function Converter() {
-  const [inputText, setInputText] = useState("");
-  const [encryptionType, setEncryptionType] = useState("caesar");
+  const {
+    inputText,
+    outputText,
+    encryptionType,
+    isEncryptMode,
+    setInputText,
+    setEncryptionType,
+    handleSwapContent
+  } = useEncryption();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
@@ -45,39 +21,32 @@ export default function Converter() {
     setEncryptionType(e.target.value);
   };
 
-  function getEncryptedText(text: string): string {
-    switch (encryptionType) {
-      case "caesar":
-        return caesarCipher(text);
-      case "reverse":
-        return reverseText(text);
-      case "sha":
-        return fakeSHA(text);
-      case "none":
-      default:
-        return text;
-    }
-  }
-
-  const encryptedText = getEncryptedText(inputText);
-
   return (
     <div className="flex flex-col relative z-20">
       <textarea
+        key={`input-${isEncryptMode}`}
         value={inputText}
         onChange={handleInputChange}
-        placeholder="Start typing here or paste any text you want to encrypt..."
+        placeholder={isEncryptMode 
+          ? "Enter text to encrypt..." 
+          : "Enter text to decrypt..."}
         className="w-full h-[42vh] mt-6 px-9 focus:outline-none"
       />
 
       <div className="flex justify-center items-center">
         <hr className="w-full" />
-        <ReverseButton className="z-10 border rounded-full bg-white" />
+        <ReverseButton 
+          className={`z-10 border rounded-full bg-white ${!isEncryptMode ? 'rotate-180' : ''}`}
+          onClick={handleSwapContent}
+        />
         <hr className="w-full" />
       </div>
 
       <div className="w-full">
-        <div className="flex justify-end mb-2">
+        <div className="flex justify-between mb-2">
+          <div className="text-sm text-gray-500 ml-3">
+            Mode: {isEncryptMode ? 'Encryption' : 'Decryption'}
+          </div>
           <select
             value={encryptionType}
             onChange={handleEncryptionChange}
@@ -90,7 +59,8 @@ export default function Converter() {
           </select>
         </div>
         <textarea
-          value={encryptedText}
+          key={`output-${isEncryptMode}`}
+          value={outputText}
           readOnly
           className="w-full h-[40vh] px-9 focus:outline-none"
         />

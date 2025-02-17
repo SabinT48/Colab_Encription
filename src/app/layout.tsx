@@ -23,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gabarito.className} antialiased flex flex-col min-h-screen`}
+        className={`${gabarito.className} antialiased flex flex-col h-screen md:overflow-hidden`}
       >
         <Header />
-        <main className="flex-1 w-full py-5 max-w-[100vw]">
+        <main className="flex-1 w-full max-w-[100vw] md:overflow-hidden">
           {children}
         </main>
         <Footer />

@@ -10,7 +10,7 @@ export default function History() {
   ];
 
   return (
-    <div className="w-full h-full border-l bg-white p-4 overflow-y-auto">
+    <div className="w-full border-l bg-white p-4 overflow-y-auto h-full">
       <h2 className="text-lg font-semibold mb-2">History</h2>
       <HistorySearch />
       <div className="mt-2">

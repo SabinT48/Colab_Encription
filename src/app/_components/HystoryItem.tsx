@@ -29,7 +29,7 @@ export default function HystoryItem({ item }: { item: string }) {
   const formatedString = item.length > maxChars ? item.slice(0, maxChars) + "..." : item;
 
   return (
-    <div ref={containerRef} className="p-2 hover:bg-gray-100 rounded cursor-pointer">
+    <div ref={containerRef} className="p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
       <h1>{formatedString}</h1>
     </div>
   );

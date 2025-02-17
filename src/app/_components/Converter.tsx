@@ -74,7 +74,7 @@ export default function Converter() {
           <select
             value={encryptionType}
             onChange={handleEncryptionChange}
-            className="z-10 bg-white border w-fit rounded px-2 py-1 text-sm"
+            className="z-10 bg-white border w-fit rounded px-2 py-1 text-sm mr-3"
           >
             <option value="none">None</option>
             <option value="caesar">Caesar Cipher</option>

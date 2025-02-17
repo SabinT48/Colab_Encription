@@ -1,5 +1,6 @@
-'use client'
+"use client";
 import { useState } from "react";
+import ReverseButton from "./ReverseButton";
 
 function caesarCipher(text: string, shift: number = 3): string {
   return text
@@ -68,7 +69,13 @@ export default function Converter() {
         placeholder="Start typing here or paste any text you want to encrypt..."
         className="w-full h-[42vh] mt-6 px-9 focus:outline-none"
       />
-      <hr className="mb-4" />
+
+      <div className="flex justify-center items-center">
+        <hr className="w-full" />
+        <ReverseButton className="z-10 border rounded-full bg-white" />
+        <hr className="w-full" />
+      </div>
+
       <div className="w-full">
         <div className="flex justify-end mb-2">
           <select
